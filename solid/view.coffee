@@ -79,10 +79,11 @@ class View extends Solid
     animation = new Solid
 
     @cssToPrefixes_('transition', duration + 'ms ' + curve)
-    delay 1, =>
+    cssRenderingDuration = if $.browser.mozilla then 100 else 1
+    delay cssRenderingDuration, =>
       @set(args)
 
-    @animationEndTimeout = delay duration, =>
+    @animationEndTimeout = delay duration + cssRenderingDuration, =>
       animation.fire('end')
       @cssToPrefixes_('transition', 'none')
 
