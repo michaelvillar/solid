@@ -11,19 +11,44 @@ class View extends Solid
   constructor: (@options = {}) ->
     super
 
+    @superview = null
+    @subviews = []
     @tagName = @options.tagName if @options.tagName
     @className = @options.className if @options.className
 
-    @$el = $(document.createElement(@tagName))
+    if @options.el
+      @$el = @options.el
+    else
+      @$el = $(document.createElement(@tagName))
     if @className
       @$el.addClass(@className)
 
+    @on('superviewWillChange', @superviewWillChange_)
+    @on('superviewDidChange', @superviewDidChange_)
+
   # View Hierarchy
   addSubview: (view) =>
+    view.fire('superviewWillChange')
     @$el.append(view.$el)
+    view.superview = @
+    @subviews.push(view) if view != @
+    view.fire('superviewDidChange')
 
   removeFromSuperview: =>
+    @fire('superviewWillChange')
     @$el.detach()
+    if @superview
+      @superview.subviews.splice(@superview.subviews.indexOf(@))
+    @superview = null
+    @fire('superviewDidChange')
+
+  isInWindow: =>
+    parent = @$el
+    while parent && parent.length > 0
+      if parent[0].tagName.toLowerCase() == 'body'
+        return true
+      parent = parent.parent()
+    return false
 
   # View Position
   height: =>
@@ -68,5 +93,16 @@ class View extends Solid
     for prefix in PREFIXES
       @$el.css(prefix+key, value)
     @$el.css(key, value)
+
+  # Events
+  superviewWillChange_: =>
+    @cachedIsInWindowForSuperviewChange_ = @isInWindow()
+    for subview in @subviews
+      subview.fire('superviewWillChange')
+
+  superviewDidChange_: =>
+    for subview in @subviews
+      subview.fire('superviewDidChange')
+    @fire('isInWindowDidChange') if @isInWindow() != @cachedIsInWindowForSuperviewChange_
 
 module.exports = View

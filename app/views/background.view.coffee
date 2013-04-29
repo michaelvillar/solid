@@ -5,10 +5,11 @@ PADDING_BOTTOM = 100
 
 class BackgroundView extends View
   className: 'backgroundView'
-  currentHeight: 0
 
   constructor: ->
     super
+
+    @currentHeight = 0
 
     @innerView = new View({ className: 'innerBackgroundView' })
     @addSubview(@innerView)
