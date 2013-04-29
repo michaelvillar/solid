@@ -12,8 +12,10 @@ class HomeController extends SectionController
 
     @view.$el.text('home')
 
-    @textView = new TextView
-    @textView.setValue("Ouech")
+    @textView = new TextView({ type: 'email' })
+    @textView.setName('email')
+    @textView.setSpellCheckingEnabled(false)
+    @textView.setAutocompleteType('email')
     @view.addSubview(@textView)
 
   show: =>
