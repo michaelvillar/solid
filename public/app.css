@@ -1,0 +1,72 @@
+.mainView {
+  position: absolute;
+  width: 300px;
+  top: 20px;
+  left: 50%;
+  margin-left: -150px;
+  font-size: 20px;
+  color: #000;
+}
+.mainView .navView {
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  padding: 10px;
+}
+.mainView .navView .button {
+  margin-right: 5px;
+}
+.mainView .mainContentView {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+.homeView {
+  background: rgba(0,255,255,0.5);
+}
+.loggedView {
+  background: rgba(255,255,100,0.5);
+}
+.paymentView {
+  background: rgba(255,0,0,0.5);
+}
+.backgroundView {
+  position: absolute;
+  overflow: hidden;
+}
+.backgroundView .innerBackgroundView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #c8c8c8;
+}
+.button {
+  appearance: none;
+  border: 1px solid #323232;
+  border-radius: 5px;
+  font-size: 15px;
+  background: #fff;
+  padding: 5px;
+}
+.button:active {
+  background: #000;
+  color: #fff;
+}
+.button.selected {
+  background: #00f;
+  color: #fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial;
+}
+body {
+  background: #fff;
+}
