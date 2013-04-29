@@ -42,10 +42,6 @@ end
 
 build(env)
 
-paths = []
-[ "app", "solid" ].each do |path|
-  paths << (root.to_s+"/"+path)
-end
-Listen.to(*paths) {
+Listen.to(root.to_s+"/app", root.to_s+"/solid", :filter => /\.(coffee|styl)$/, :latency => 0.05) {
   build(env)
 }

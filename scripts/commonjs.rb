@@ -23,6 +23,7 @@ module Sprockets
     end
 
     def evaluate(scope, locals, &block)
+      puts scope.logical_path.to_s
       if commonjs_module?(scope)
         scope.require_asset 'scripts/sprockets/commonjs'
         WRAPPER % [ namespace, commonjs_module_name(scope), data ]
