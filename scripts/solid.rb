@@ -8,6 +8,7 @@ require 'sprockets'
 require 'coffee_script'
 require 'listen'
 require 'stylus/sprockets'
+require 'nsnotify'
 
 require Pathname('.') + 'scripts/commonjs.rb'
 
@@ -27,9 +28,14 @@ def build env
     js.write_to('./public/app.js')
     css = env.find_asset('./solid/app.styl')
     css.write_to('./public/app.css')
-    puts "Building complete - #{((Time.now - t1) * 1000).round.to_f / 1000}s"
+    time = "#{((Time.now - t1) * 1000).round.to_f / 1000}s"
+    puts "Build completed in #{time}"
+    Nsnotify.notify "Solid - Build completed", "Time #{time}"
   rescue Exception => e
     puts e.message
+    msg = e.message
+    msg = msg.gsub(Pathname('.').expand_path,'').gsub('SyntaxError: ','').gsub('  (in ','(in ')
+    Nsnotify.notify "Solid - SyntaxError", msg
   end
   puts "\n"
 end
