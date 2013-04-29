@@ -5,6 +5,6 @@
 @clearDelay = (id) -> clearTimeout id
 
 $ ->
-  AppController = require('controllers/app.controller')
+  AppController = require('app.controller')
   appController = new AppController()
   $('body').append(appController.view.$el)

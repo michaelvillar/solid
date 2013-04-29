@@ -1,14 +1,14 @@
 Controller = require('controller')
 View = require('view')
 
-HomeController = require('controllers/home.controller')
-PaymentController = require('controllers/payment.controller')
-LoggedController = require('controllers/logged.controller')
+HomeController = require('home.controller')
+PaymentController = require('payment.controller')
+LoggedController = require('logged.controller')
 
-ButtonView = require('views/button.view')
-BackgroundView = require('views/background.view')
+ButtonView = require('button.view')
+BackgroundView = require('background.view')
 
-easingCurves = require('helpers/easingCurves')
+easingCurves = require('easingCurves')
 
 class AppController extends Controller
   currentController: null

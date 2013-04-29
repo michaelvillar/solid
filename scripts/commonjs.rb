@@ -42,8 +42,8 @@ module Sprockets
 
     def commonjs_module_name(scope)
       parts = scope.logical_path.split("/")
-      name = parts.slice(1, parts.length - 1).join("/")
-      name
+      filename = parts[parts.length - 1]
+      filename.gsub("\.coffee","")
     end
 
   end

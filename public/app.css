@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial;
+}
+body {
+  background: #fff;
+}
 .mainView {
   position: absolute;
   width: 300px;
@@ -61,12 +69,4 @@
 .button.selected {
   background: #00f;
   color: #fff;
-}
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial;
-}
-body {
-  background: #fff;
 }

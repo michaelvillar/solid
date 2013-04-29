@@ -1,6 +1,6 @@
 View = require('view')
 
-SectionController = require('controllers/section.controller')
+SectionController = require('section.controller')
 
 class HomeController extends SectionController
   sectionViewClassName: 'homeView'
